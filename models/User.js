@@ -13,7 +13,21 @@ const UserSchema = new Schema({
         unique: true,
         required: true,
     },
-      
+    // This is a subdocument for thoughts
+    thoughts: [  
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Thought' // This si the reference for the document model
+        }
+    ],
+
+    // This is a subdocument for friends
+    friends: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'  // This si the reference for the document model
+        }
+    ]
 },
 {
     toJSON: {
