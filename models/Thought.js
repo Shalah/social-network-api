@@ -1,5 +1,39 @@
 const { Schema, model } = require('mongoose');
 
+// This is for the Reaction Schema
+
+const ReactionSchema = new Schema({
+    reactionID: {
+        type: Schema.Types.ObjectId,
+        default: () => new Types.ObjectId()
+    },
+
+    reactionBody: {
+        type: String,
+        required: true,
+        max: 280
+    },
+
+    username: {
+        type: String,
+        required: true
+    },
+
+    createdAt: {
+        type: Date,
+        default: () => Date.now(),
+    },
+},
+{
+    toJSON: {
+        getters: true
+    }
+});
+
+
+// End of Reaction Subdocument schema
+
+
 const thoughtSchema = new Schema({
     thoughtText: {
         type: String,
@@ -9,29 +43,15 @@ const thoughtSchema = new Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now,
+        default: () => Date.now(),
     },
-
-    email: {
+    username: {
         type: String,
-        unique: true,
         required: true,
     },
-    // This is a subdocument for thoughts
-    thoughts: [  
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Thought' // This si the reference for the document model
-        }
-    ], 
-
-    // This is a subdocument for friends
-    friends: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'User'  // This si the reference for the document model
-        }
-    ]
+    reactions: 
+        [ReactionSchema]
+    ,
 },
 {
     toJSON: {
@@ -41,7 +61,10 @@ const thoughtSchema = new Schema({
     id: false
 });
 
+thoughtSchema.virtual('reactionCount').get(function(){
+    return this.reactions.length
+});
 
-const Thought = model('User', thoughtSchema);
+const Thought = model('Thought', thoughtSchema);
 
 module.exports = Thought;
