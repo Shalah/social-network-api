@@ -1,11 +1,15 @@
 const { Schema, model } = require('mongoose');
 
-const userSchema = new Schema({
-    username: {
+const thoughtSchema = new Schema({
+    thoughtText: {
         type: String,
-        unique: true,
         required: true,
-        trim: true
+        nim: 1,
+        max: 280,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
     },
 
     email: {
@@ -19,7 +23,7 @@ const userSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Thought' // This si the reference for the document model
         }
-    ],
+    ], 
 
     // This is a subdocument for friends
     friends: [
@@ -38,6 +42,6 @@ const userSchema = new Schema({
 });
 
 
-const User = model('User', userSchema);
+const Thought = model('User', thoughtSchema);
 
-module.exports = User;
+module.exports = Thought;
