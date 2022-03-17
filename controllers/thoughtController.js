@@ -7,7 +7,7 @@ module.exports = {
       .then(async (thought) => {
         const thoughtObj = {
           thought,
-          reactionCount: await reactionCount(),
+          // reactionCount: await reactionCount(),
         };
         return res.json(thoughtObj);
       })
@@ -17,7 +17,7 @@ module.exports = {
       });
   },
   // Get a single thought
-  getThought(req, res) {
+  getOneThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .select('-__v')
       .then(async (thought) =>
