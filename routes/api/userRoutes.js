@@ -10,14 +10,21 @@ const {
 } = require('../../controllers/userController');
 
 // /This is the api for All Users
-router.route('/').get(getUsers).post(createOneUser);
+router.route('/').get(getUsers);
+
+router.route('/').post(createOneUser);
 
 // /This is the api for One User (Used to delete)
-router.route('/:userId').get(getOneUser).delete(deleteOneUser);
+router.route('/:userId').get(getOneUser)
 
-// /This is the api for One User (Used to update)
-router.route('/:userId').get(getOneUser).put(updateOneUser);
+//This is used to depete a user
+router.route('/:userId').delete(deleteOneUser);
 
-// /api/students/:studentId/assignments/:assignmentId
+// // /This is the api for One User (Used to update)
+router.route('/:userId').get(getOneUser)
+
+// This is used to update
+router.route('/:userId').put(updateOneUser);
+
 
 module.exports = router;

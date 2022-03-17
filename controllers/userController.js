@@ -11,7 +11,8 @@ module.exports = {
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
   },
-  // This is to get one user
+
+  //This is to get one user
   getOneUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .select('-__v')
@@ -31,7 +32,8 @@ module.exports = {
         return res.status(500).json(err);
       });
   },
-  // This deletes a user
+
+  //This deletes a user
   deleteOneUser(req, res) {
     User.findOneAndDelete({ _id: req.params.userId })
       .then((user) =>
@@ -42,6 +44,7 @@ module.exports = {
       .then(() => res.json({ message: 'User and thoughts have been deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
+  
   // This updates a user
   updateOneUser(req, res) {
     User.findOneAndUpdate(
@@ -56,4 +59,4 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-};
+ };
