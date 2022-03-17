@@ -5,13 +5,13 @@ const { User, Thought } = require('../models');
 
 
 module.exports = {
-  // Get all courses
+  // This is to get all users
   getUsers(req, res) {
     User.find()
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
   },
-  // Get a course
+  // This is to get one user
   getOneUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .select('-__v')
@@ -22,7 +22,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // Create a user
+  // This creates a user
   createOneUser(req, res) {
     User.create(req.body)
       .then((user) => res.json(user))
@@ -31,7 +31,7 @@ module.exports = {
         return res.status(500).json(err);
       });
   },
-  // Delete a user
+  // This deletes a user
   deleteOneUser(req, res) {
     User.findOneAndDelete({ _id: req.params.userId })
       .then((user) =>
@@ -42,7 +42,7 @@ module.exports = {
       .then(() => res.json({ message: 'User and thoughts have been deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
-  // Update a user
+  // This updates a user
   updateOneUser(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },

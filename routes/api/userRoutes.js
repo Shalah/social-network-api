@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { getUsers } = require('../../controllers/userController');
 const {
   getUsers,
   getOneUser,
@@ -10,13 +9,13 @@ const {
   //removeFriend,
 } = require('../../controllers/userController');
 
-// /api/students
+// /This is the api for All Users
 router.route('/').get(getUsers).post(createOneUser);
 
-// /api/students/:studentId
+// /This is the api for One User (Used to delete)
 router.route('/:userId').get(getOneUser).delete(deleteOneUser);
 
-// /api/students/:studentId/assignments
+// /This is the api for One User (Used to update)
 router.route('/:userId').get(getOneUser).put(updateOneUser);
 
 // /api/students/:studentId/assignments/:assignmentId
