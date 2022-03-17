@@ -12,6 +12,7 @@ const {
 // /This is the api for All Users
 router.route('/').get(getUsers);
 
+// Route to create a user
 router.route('/').post(createOneUser);
 
 // /This is the api for One User (Used to delete)
