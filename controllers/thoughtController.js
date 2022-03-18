@@ -15,7 +15,7 @@ module.exports = {
         console.log(err);
         return res.status(500).json(err);
       });
-  },
+  },  
   // Get a single thought
   getOneThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
@@ -48,8 +48,8 @@ module.exports = {
           ? res
               //.status(404)
               .json({ message: "Thought was created" })
-          : res.json(" Thought was created")
-      )
+          : res.json(" Thought was created") 
+      ) 
       .catch((err) => res.status(500).json(err));
   },
 
@@ -69,8 +69,9 @@ module.exports = {
       )
       .then((user) =>
         !user
-          ? res.status(404).json({
-              message: "No User found, but Thought Deleted",
+          ? res //.status(404)
+          .json({
+              message: "Thought deleted!",
             })
           : res.json({ message: "Thought deleted!" })
       )
